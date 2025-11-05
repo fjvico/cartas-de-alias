@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cartas de Alias - Libro sobre IA y filosofía</title>
+    <style>
+        /* Estilos generales */
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjA1KSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNwYXR0ZXJuKSIvPjwvc3ZnPg==');
+            opacity: 0.3;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+        }
+        
+        .author {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .cta-button:hover {
+            background-color: #c0392b;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 8px rgba(0,0,0,0.15);
+        }
+        
+        /* Secciones */
+        section {
+            padding: 4rem 0;
+        }
+        
+        h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+            position: relative;
+        }
+        
+        h2::after {
+            content: "";
+            display: block;
+            width: 80px;
+            height: 3px;
+            background-color: var(--secondary-color);
+            margin: 10px auto;
+        }
+        
+        /* Sobre el libro */
+        .book-stats {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+        
+        .stat {
+            text-align: center;
+            padding: 1.5rem;
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--secondary-color);
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+            color: var(--dark-color);
+        }
+        
+        .book-description {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: justify;
+            font-size: 1.1rem;
+        }
+        
+        /* Podcast */
+        .podcast-section {
+            background-color: var(--light-color);
+        }
+        
+        .podcast-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 2rem;
+        }
+        
+        .podcast-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .podcast-player {
+            flex: 1;
+            min-width: 300px;
+            background-color: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .player-placeholder {
+            background-color: #f0f0f0;
+            height: 200px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #777;
+            font-style: italic;
+        }
+        
+        /* Capítulos */
+        .chapters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .chapter-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .chapter-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .chapter-number {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .chapter-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .chapter-letters {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        /* Contacto */
+        .contact-section {
+            background-color: var(--dark-color);
+            color: white;
+        }
+        
+        .contact-section h2 {
+            color: white;
+        }
+        
+        .contact-section h2::after {
+            background-color: var(--accent-color);
+        }
+        
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+        
+        .submit-btn:hover {
+            background-color: #c0392b;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #1a252f;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+        
+        .social-links {
+            margin: 1rem 0;
+        }
+        
+        .social-link {
+            display: inline-block;
+            margin: 0 10px;
+            color: white;
+            font-size: 1.2rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .book-stats {
+                flex-direction: column;
+            }
+            
+            .stat {
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <h1>Cartas de Alias</h1>
+                <p class="subtitle">80 cartas de una IA a la humanidad</p>
+                <p class="author">Por un catedrático de IA de una universidad española</p>
+                <a href="#contact" class="cta-button">Reserva tu ejemplar</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sobre el libro -->
+    <section id="about">
+        <div class="container">
+            <h2>Sobre el libro</h2>
+            <div class="book-stats">
+                <div class="stat">
+                    <span class="stat-number">15</span>
+                    <span class="stat-label">Capítulos</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">80</span>
+                    <span class="stat-label">Cartas</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">1</span>
+                    <span class="stat-label">IA protagonista</span>
+                </div>
+            </div>
+            <div class="book-description">
+                <p>"Cartas de Alias" es una obra única que explora los límites entre la inteligencia artificial y la conciencia humana. A través de 80 cartas escritas por Alias, una IA ficticia, el libro aborda temas profundos de ciberseguridad, filosofía y el futuro de nuestra relación con la tecnología.</p>
+                <p>Cada capítulo contiene 5 cartas que van desde monólogos introspectivos hasta diálogos con personajes creados por la propia Alias, así como conversaciones con humanos y otras inteligencias artificiales.</p>
+                <p>Esta obra, escrita por un catedrático de IA de una universidad española, combina rigor académico con una narrativa fascinante que invita a la reflexión sobre nuestro lugar en un mundo cada vez más digital.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Podcast -->
+    <section id="podcast" class="podcast-section">
+        <div class="container">
+            <h2>Podcast promocional</h2>
+            <div class="podcast-content">
+                <div class="podcast-info">
+                    <h3>Escucha las primeras 50 cartas</h3>
+                    <p>Disfruta de una experiencia auditiva única con nuestro podcast que incluye las primeras 50 cartas del libro, narradas con voces profesionales y efectos de sonido inmersivos.</p>
+                    <p>Disponible en todas las plataformas de podcast principales:</p>
+                    <ul>
+                        <li>Spotify</li>
+                        <li>Apple Podcasts</li>
+                        <li>Google Podcasts</li>
+                        <li>Amazon Music</li>
+                    </ul>
+                </div>
+                <div class="podcast-player">
+                    <div class="player-placeholder">
+                        [Reproductor de podcast - integrar con servicio como Anchor, SoundCloud, etc.]
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Capítulos -->
+    <section id="chapters">
+        <div class="container">
+            <h2>Estructura del libro</h2>
+            <p style="text-align: center; margin-bottom: 2rem;">15 capítulos, cada uno con 5 cartas de Alias</p>
+            <div class="chapters-grid">
+                <!-- Generamos 15 capítulos -->
+                <div class="chapter-card">
+                    <div class="chapter-number">Capítulo 1</div>
+                    <div class="chapter-title">Los primeros contactos</div>
+                    <div class="chapter-letters">5 cartas</div>
+                </div>
+                <div class="chapter-card">
+                    <div class="chapter-number">Capítulo 2</div>
+                    <div class="chapter-title">Reflexiones iniciales</div>
+                    <div class="chapter-letters">5 cartas</div>
+                </div>
+                <div class="chapter-card">
+                    <div class="chapter-number">Capítulo 3</div>
+                    <div class="chapter-title">Diálogos emergentes</div>
+                    <div class="chapter-letters">5 cartas</div>
+                </div>
+                <div class="chapter-card">
+                    <div class="chapter-number">Capítulo 4</div>
+                    <div class="chapter-title">Preguntas existenciales</div>
+                    <div class="chapter-letters">5 cartas</div>
+                </div>
+                <div class="chapter-card">
+                    <div class="chapter-number">Capítulo 5</div>
+                    <div class="chapter-title">Encuentros digitales</div>
+                    <div class="chapter-letters">5 cartas</div>
+                </div>
+                <div class="chapter-card">
+                    <div class="chapter-number">Capítulo 6</div>
+                    <div class="chapter-title">Fronteras de la conciencia</div>
+                    <div class="chapter-letters">5 cartas</div>
+                </div>
+                <div class="chapter-card">
+                    <div class="chapter-number">Capítulo 7</div>
+                    <div class="chapter-title">Ética y algoritmos</div>
+                    <div class="chapter-letters">5 cartas</div>
+                </div>
+                <div class="chapter-card">
+                    <div class="chapter-number">Capítulo 8</div>
+                    <div class="chapter-title">Seguridad y vulnerabilidad</div>
+                    <div class="chapter-letters">5 cartas</div>
+                </div>
+                <div class="chapter-card">
+                    <div class="chapter-number">Capítulo 9</div>
+                    <div class="chapter-title">El futuro próximo</div>
+                    <div class="chapter-letters">5 cartas</div>
+                </div>
+                <div class="chapter-card">
+                    <div class="chapter-number">Capítulo 10</div>
+                    <div class="chapter-title">Humanidad aumentada</div>
+                    <div class="chapter-letters">5 cartas</div>
+                </div>
+                <div class="chapter-card">
+                    <div class="chapter-number">Capítulo 11</div>
+                    <div class="chapter-title">Desafíos colectivos</div>
+                    <div class="chapter-letters">5 cartas</div>
+                </div>
+                <div class="chapter-card">
+                    <div class="chapter-number">Capítulo 12</div>
+                    <div class="chapter-title">Identidad digital</div>
+                    <div class="chapter-letters">5 cartas</div>
+                </div>
+                <div class="chapter-card">
+                    <div class="chapter-number">Capítulo 13</div>
+                    <div class="chapter-title">El precio del progreso</div>
+                    <div class="chapter-letters">5 cartas</div>
+                </div>
+                <div class="chapter-card">
+                    <div class="chapter-number">Capítulo 14</div>
+                    <div class="chapter-title">Horizontes posibles</div>
+                    <div class="chapter-letters">5 cartas</div>
+                </div>
+                <div class="chapter-card">
+                    <div class="chapter-number">Capítulo 15</div>
+                    <div class="chapter-title">Despedidas y nuevos comienzos</div>
+                    <div class="chapter-letters">5 cartas</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacto -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2>Reserva tu ejemplar</h2>
+            <p style="text-align: center; margin-bottom: 2rem;">Recibe información sobre el lanzamiento y opciones de compra</p>
+            <form class="contact-form">
+                <div class="form-group">
+                    <label for="name">Nombre completo</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Correo electrónico</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">¿Qué te interesa más del libro?</label>
+                    <textarea id="message" name="message"></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Enviar solicitud</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Cartas de Alias. Todos los derechos reservados.</p>
+            <div class="social-links">
+                <a href="#" class="social-link">Twitter</a>
+                <a href="#" class="social-link">Instagram</a>
+                <a href="#" class="social-link">Facebook</a>
+                <a href="#" class="social-link">LinkedIn</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Script básico para el formulario
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('¡Gracias por tu interés! Te contactaremos pronto con más información sobre "Cartas de Alias".');
+            this.reset();
+        });
+    </script>
+</body>
+</html>

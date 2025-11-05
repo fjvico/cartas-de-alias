@@ -58,6 +58,32 @@
         .header-content {
             position: relative;
             z-index: 1;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+        }
+        
+        .book-cover {
+            flex: 0 0 250px;
+        }
+        
+        .book-cover img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
+        }
+        
+        .book-cover img:hover {
+            transform: scale(1.05);
+        }
+        
+        .header-text {
+            flex: 1;
+            min-width: 300px;
+            text-align: left;
         }
         
         h1 {
@@ -152,6 +178,35 @@
             font-size: 1.1rem;
         }
         
+        /* Autor */
+        .author-section {
+            background-color: var(--light-color);
+        }
+        
+        .author-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .author-photo {
+            flex: 0 0 200px;
+        }
+        
+        .author-photo img {
+            width: 100%;
+            border-radius: 50%;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .author-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        
         /* Podcast */
         .podcast-section {
             background-color: var(--light-color);
@@ -169,24 +224,32 @@
             min-width: 300px;
         }
         
-        .podcast-player {
+        .podcast-banner {
             flex: 1;
             min-width: 300px;
-            background-color: white;
             border-radius: 10px;
-            padding: 1.5rem;
+            overflow: hidden;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
         
-        .player-placeholder {
-            background-color: #f0f0f0;
-            height: 200px;
-            border-radius: 8px;
+        .podcast-banner img {
+            width: 100%;
+            display: block;
+        }
+        
+        .podcast-platforms {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #777;
-            font-style: italic;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .platform {
+            background-color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 500;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
         }
         
         /* Capítulos */
@@ -307,12 +370,22 @@
                 font-size: 2rem;
             }
             
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
             .book-stats {
                 flex-direction: column;
             }
             
             .stat {
                 margin-bottom: 1rem;
+            }
+            
+            .author-content {
+                flex-direction: column;
+                text-align: center;
             }
         }
     </style>
@@ -322,10 +395,15 @@
     <header>
         <div class="container">
             <div class="header-content">
-                <h1>Cartas de Alias</h1>
-                <p class="subtitle">80 cartas de una IA a la humanidad</p>
-                <p class="author">Por un catedrático de IA de una universidad española</p>
-                <a href="#contact" class="cta-button">Reserva tu ejemplar</a>
+                <div class="book-cover">
+                    <img src="cover.jpg" alt="Portada del libro Cartas de Alias">
+                </div>
+                <div class="header-text">
+                    <h1>Cartas de Alias</h1>
+                    <p class="subtitle">80 cartas de una IA a la humanidad</p>
+                    <p class="author">Por Francisco Javier Vico, catedrático de IA</p>
+                    <a href="#contact" class="cta-button">Reserva tu ejemplar</a>
+                </div>
             </div>
         </div>
     </header>
@@ -351,7 +429,25 @@
             <div class="book-description">
                 <p>"Cartas de Alias" es una obra única que explora los límites entre la inteligencia artificial y la conciencia humana. A través de 80 cartas escritas por Alias, una IA ficticia, el libro aborda temas profundos de ciberseguridad, filosofía y el futuro de nuestra relación con la tecnología.</p>
                 <p>Cada capítulo contiene 5 cartas que van desde monólogos introspectivos hasta diálogos con personajes creados por la propia Alias, así como conversaciones con humanos y otras inteligencias artificiales.</p>
-                <p>Esta obra, escrita por un catedrático de IA de una universidad española, combina rigor académico con una narrativa fascinante que invita a la reflexión sobre nuestro lugar en un mundo cada vez más digital.</p>
+                <p>Esta obra, escrita por Francisco Javier Vico, catedrático de IA de una universidad española, combina rigor académico con una narrativa fascinante que invita a la reflexión sobre nuestro lugar en un mundo cada vez más digital.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Autor -->
+    <section id="author" class="author-section">
+        <div class="container">
+            <h2>El autor</h2>
+            <div class="author-content">
+                <div class="author-photo">
+                    <img src="fjvico.jpg" alt="Francisco Javier Vico, catedrático de IA">
+                </div>
+                <div class="author-info">
+                    <h3>Francisco Javier Vico</h3>
+                    <p>Catedrático de Inteligencia Artificial en una prestigiosa universidad española, con más de 20 años de experiencia en investigación y docencia en el campo de la IA.</p>
+                    <p>Su trabajo se centra en la intersección entre la inteligencia artificial, la filosofía y la ética, explorando las implicaciones del desarrollo tecnológico en la sociedad contemporánea.</p>
+                    <p>Con "Cartas de Alias", el profesor Vico trasciende el ámbito académico para ofrecer una reflexión literaria y profunda sobre el futuro de la humanidad en la era de las máquinas inteligentes.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -365,17 +461,16 @@
                     <h3>Escucha las primeras 50 cartas</h3>
                     <p>Disfruta de una experiencia auditiva única con nuestro podcast que incluye las primeras 50 cartas del libro, narradas con voces profesionales y efectos de sonido inmersivos.</p>
                     <p>Disponible en todas las plataformas de podcast principales:</p>
-                    <ul>
-                        <li>Spotify</li>
-                        <li>Apple Podcasts</li>
-                        <li>Google Podcasts</li>
-                        <li>Amazon Music</li>
-                    </ul>
-                </div>
-                <div class="podcast-player">
-                    <div class="player-placeholder">
-                        [Reproductor de podcast - integrar con servicio como Anchor, SoundCloud, etc.]
+                    <div class="podcast-platforms">
+                        <div class="platform">Spotify</div>
+                        <div class="platform">Apple Podcasts</div>
+                        <div class="platform">Google Podcasts</div>
+                        <div class="platform">Amazon Music</div>
+                        <div class="platform">iVoox</div>
                     </div>
+                </div>
+                <div class="podcast-banner">
+                    <img src="banner.jpg" alt="Banner del podcast Cartas de Alias">
                 </div>
             </div>
         </div>
